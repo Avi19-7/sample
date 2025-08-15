@@ -129,8 +129,9 @@ export default function Home() {
     const timer = setTimeout(scrollToBottom, 100);
     return () => clearTimeout(timer);
   }
-  }, [messages, scrollToBottom, isClient]);
-
+  
+  return undefined;
+}, [isClient, messages.length]);
   useEffect(() => {
     if (!autoRefresh || !isClient) return;
     const interval = setInterval(() => {
