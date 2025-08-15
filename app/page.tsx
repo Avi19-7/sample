@@ -124,13 +124,14 @@ export default function Home() {
     if (messagesEndRef.current) messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-
   useEffect(() => {
-    if (!isClient || messages.length === 0) return;
+  if (isClient && messages.length > 0) {
     const timer = setTimeout(scrollToBottom, 100);
-  return () => clearTimeout(timer);
-  }, [isClient, messages.length]);
-  
+    return () => clearTimeout(timer);
+  }
+  return undefined;
+}, [messages, scrollToBottom, isClient]);
+
   useEffect(() => {
     if (!autoRefresh || !isClient) return;
     const interval = setInterval(() => {
