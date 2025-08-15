@@ -125,10 +125,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (isClient && messages.length > 0) {
-      const timer = setTimeout(scrollToBottom, 100);
-      return () => clearTimeout(timer);
-    }
+  if (isClient && messages.length > 0) {
+    const timer = setTimeout(scrollToBottom, 100);
+    return () => clearTimeout(timer);
+  }
   }, [messages, scrollToBottom, isClient]);
 
   useEffect(() => {
