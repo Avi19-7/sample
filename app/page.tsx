@@ -125,12 +125,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-  if (isClient && messages.length > 0) {
-    const timer = setTimeout(scrollToBottom, 100);
-    return () => clearTimeout(timer);
-  }
-  return undefined;
-}, [messages, scrollToBottom, isClient]);
+    if (isClient && messages.length > 0) {
+      const timer = setTimeout(scrollToBottom, 100);
+      return () => clearTimeout(timer);
+    }
+    return undefined;
+  }, [messages, scrollToBottom, isClient]);
 
   useEffect(() => {
     if (!autoRefresh || !isClient) return;
