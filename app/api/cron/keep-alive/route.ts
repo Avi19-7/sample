@@ -14,10 +14,10 @@ export async function GET(request: NextRequest) {
 
   const { error } = await supabaseAdmin
     .from('_heartbeat')
-    .update({ pinged_at: new Date().toISOString() })
-    .eq('id', 1);
+    .upsert({ id: 1, pinged_at: new Date().toISOString() });
 
   if (error) {
+    console.error('Keep-alive ping failed:', error.message);
     return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
   }
   return NextResponse.json({ ok: true, pinged_at: new Date().toISOString() });
